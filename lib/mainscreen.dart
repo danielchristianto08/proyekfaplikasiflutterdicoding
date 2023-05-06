@@ -10,10 +10,10 @@ class MainScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Movie'),
-        actions: <Widget>[
-          IconButton(onPressed: () {}, icon: Icon(Icons.home)),
-        ],
-        leading: IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
+        // actions: <Widget>[
+        //   IconButton(onPressed: () {}, icon: Icon(Icons.home)),
+        // ],
+        //leading: IconButton(onPressed: () {}, icon: Icon(Icons.settings)),
       ),
       body: ListView.builder(
         itemCount: MovieList.length,

@@ -8,7 +8,9 @@ class myLogin extends StatefulWidget {
 }
 
 class _myLoginState extends State<myLogin> {
-  String? username, password;
+  bool _isLoading = false;
+  var _username = TextEditingController();
+  var _password = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,32 +19,42 @@ class _myLoginState extends State<myLogin> {
       ),
       body: Column(
         children: [
+          _isLoading
+              ? const Center(child: CircularProgressIndicator())
+              : Container(),
+          const SizedBox(
+            height: 24,
+          ),
           const Text('Username'),
           TextField(
+            controller: _username,
+            keyboardType: TextInputType.name,
             decoration: InputDecoration(
-              labelText: 'Masukkan Username',
+              //labelText: 'Masukkan Username',
               hintText: 'Username',
             ),
-            onChanged: (String? value) {
-              setState(() {
-                username = value;
-              });
-            },
+            // onChanged: (String? value) {
+            //   setState(() {
+            //     username = value;
+            //   });
+            // },
           ),
           const Text('Password'),
           TextField(
+            controller: _password,
+            keyboardType: TextInputType.visiblePassword,
             decoration: InputDecoration(
-              labelText: 'Masukkan Password',
+              //labelText: 'Masukkan Password',
               hintText: 'Password',
             ),
-            onChanged: (String? value) {
-              setState(() {
-                password = value;
-              });
-            },
+            // onChanged: (String? value) {
+            //   setState(() {
+            //     password = value;
+            //   });
+            // },
           ),
           ElevatedButton(
-              onPressed: () {
+              onPressed: () async {
                 showDialog(
                     context: context,
                     builder: (context) {
@@ -50,6 +62,9 @@ class _myLoginState extends State<myLogin> {
                         content: const Text('Berhasil Login'),
                       );
                     });
+                setState(() {
+                  _isLoading = true;
+                });
               },
               child: const Text('Login'))
         ],
